@@ -4,72 +4,80 @@ block content
   h1= title
   p Welcome to #{title}
 
-  table
-    thead
+  form(action='/users' method='post')
+    input(type='text', name='origin', placeholder='origin')
+
+    input(type='text', name='destination', placeholder='destination')
+
+    label(for='row1')
+      p Waypoints:
+    table
+      thead
+        tr
+          th
+          th 1
+          th 2
+          th 3
+          th 4
+          th 5
       tr
-        th
-        th 1
-        th 2
-        th 3
-        th 4
-        th 5
-    tr
-      th A
-      td
-        input(type='text', name='a1')
-      td
-        input(type='text', name='a2')
-      td
-        input(type='text', name='a3')
-      td
-        input(type='text', name='a5')
-      td
-        input(type='text', name='a5')
-    tr
-      th B
-      td
-        input(type='text', name='b1')
-      td
-        input(type='text', name='b2')
-      td
-        input(type='text', name='b3')
-      td
-        input(type='text', name='b5')
-      td
-        input(type='text', name='b5')
-    tr
-      th C
-      td
-        input(type='text', name='c1')
-      td
-        input(type='text', name='c2')
-      td
-        input(type='text', name='c3')
-      td
-        input(type='text', name='c5')
-      td
-        input(type='text', name='c5')
-    tr
-      th D
-      td
-        input(type='text', name='d1')
-      td
-        input(type='text', name='d2')
-      td
-        input(type='text', name='d3')
-      td
-        input(type='text', name='d5')
-      td
-        input(type='text', name='d5')
-    tr
-      th E
-      td
-        input(type='text', name='e1')
-      td
-        input(type='text', name='e2')
-      td
-        input(type='text', name='e3')
-      td
-        input(type='text', name='e5')
-      td
-        input(type='text', name='e5')
+        th A
+        td
+          input(type='text', name='row1')
+        td
+          input(type='text', name='row1')
+        td
+          input(type='text', name='row1')
+        td
+          input(type='text', name='row1')
+        td
+          input(type='text', name='row1')
+      tr
+        th B
+        td
+          input(type='text', name='row2')
+        td
+          input(type='text', name='row2')
+        td
+          input(type='text', name='row2')
+        td
+          input(type='text', name='row2')
+        td
+          input(type='text', name='row2')
+      tr
+        th C
+        td
+          input(type='text', name='row3')
+        td
+          input(type='text', name='row3')
+        td
+          input(type='text', name='row3')
+        td
+          input(type='text', name='row3')
+        td
+          input(type='text', name='row3')
+      tr
+        th D
+        td
+          input(type='text', name='row4')
+        td
+          input(type='text', name='row4')
+        td
+          input(type='text', name='row4')
+        td
+          input(type='text', name='row4')
+        td
+          input(type='text', name='row4')
+      tr
+        th E
+        td
+          input(type='text', name='row5')
+        td
+          input(type='text', name='row5')
+        td
+          input(type='text', name='row5')
+        td
+          input(type='text', name='row5')
+        td
+          input(type='text', name='row5')
+    input(type='submit')
