@@ -5,11 +5,11 @@ var alleyCheetah = require('alley-cheetah');
 router.post('/', function(req, res, next) {
   var {origin, destination} = req.body;
   var waypointGrid = [
-    req.body.row1,
-    req.body.row2,
-    req.body.row3,
-    req.body.row4,
-    req.body.row5,
+    req.body.rowA,
+    req.body.rowB,
+    req.body.rowC,
+    req.body.rowD,
+    req.body.rowE,
   ]
 
   // remove empty cells
