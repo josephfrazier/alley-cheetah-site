@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "localtunnel": "lt --port 3000 --subdomain alleycheetah"
   },
   "dependencies": {
     "alley-cheetah": "git+https://github.com/josephfrazier/alley-cheetah.git",
@@ -19,5 +20,8 @@
     "places.js": "^1.4.7",
     "promised-location": "^1.0.1",
     "serve-favicon": "~2.3.0"
+  },
+  "devDependencies": {
+    "localtunnel": "^1.8.2"
   }
 }
