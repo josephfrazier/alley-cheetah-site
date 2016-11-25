@@ -1,6 +1,8 @@
 var places = require('places.js')
 
-document.querySelector('#autofillDemo').addEventListener('click', function autofillDemo () {
+var $ = s => document.querySelector(s)
+
+$('#autofillDemo').addEventListener('click', function autofillDemo () {
   const origin = 'Hudson Yards Park'
   const destination = '440 Grand St'
 
@@ -11,8 +13,6 @@ document.querySelector('#autofillDemo').addEventListener('click', function autof
     ['311 E 23rd St, NYC', '580 9th Ave, NYC', '2704 Broadway, NYC', '5 St. James Pl, NYC'],
     ['10 Union Sq. East, NYC', '225 W. 57th St, NYC', '609 Columbus Ave, NYC', '2217 7th Ave, NYC']
   ]
-
-  var $ = s => document.querySelector(s)
 
   $('#origin').value = 'Hudson Yards Park'
   $('#destination').value = '440 Grand St'
@@ -55,7 +55,7 @@ function setupAutocomplete (aroundLatLng) {
       aroundRadius: 12875, // 8 miles
       useDeviceLocation: true,
     })
-    document.querySelector(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
-    document.querySelector(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
+    $(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
+    $(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
   })
 }
