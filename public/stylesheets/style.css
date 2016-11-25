@@ -13,3 +13,7 @@ a {
   top: 0 !important;
   z-index: 1 !important;
 }
+
+.algolia-places.focused input {
+  background: lightyellow;
+}
