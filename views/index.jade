@@ -2,8 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-  button(id='autofillDemo') fill in the form with demo values from Cranksgiving 11
+  p #{title} helps you be the fastest cat of your local #[a(href='http://cranksgiving.org') Cranksgiving]. Fill in the form below, or #[a(id='autofillDemo' href="#") use demo values from Cranksgiving NYC 11].
 
   form(action='/users' method='post')
     input(type='text', name='origin', id='origin' placeholder='origin')
