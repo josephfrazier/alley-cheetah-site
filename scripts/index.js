@@ -39,9 +39,12 @@ document.querySelector('#autofillDemo').addEventListener('click', function autof
   $('#D4').value = grid[3][3]
 });
 
+setupAutocomplete('40.7128,-74.0059')
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
-  return [latitude, longitude].join(',')
-}).catch(() => '40.7128,-74.0059').then(function (aroundLatLng) {
+  setupAutocomplete([latitude, longitude].join(','))
+})
+
+function setupAutocomplete (aroundLatLng) {
   [
     '#origin', '#destination',
     '#A1', '#A2', '#A3', '#A4', '#A5',
@@ -56,4 +59,4 @@ promisedLocation().then(function ({coords: {latitude, longitude}}) {
       aroundRadius: 12875, // 8 miles
     })
   })
-})
+}
