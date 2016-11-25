@@ -1,4 +1,6 @@
-function autofillDemo () {
+var places = require('places.js')
+
+document.querySelector('#autofillDemo').addEventListener('click', function autofillDemo () {
   const origin = 'Hudson Yards Park'
   const destination = '440 Grand St'
 
@@ -34,7 +36,7 @@ function autofillDemo () {
   $('#D2').value = grid[3][1]
   $('#D3').value = grid[3][2]
   $('#D4').value = grid[3][3]
-}
+});
 
 [
   '#origin', '#destination',

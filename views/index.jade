@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  button(onclick='autofillDemo()') fill in the form with demo values from Cranksgiving 11
+  button(id='autofillDemo') fill in the form with demo values from Cranksgiving 11
 
   form(action='/users' method='post')
     input(type='text', name='origin', id='origin' placeholder='origin')
@@ -29,5 +29,4 @@ block content
               input(type='text', name='row#{letter}', id='#{letter}#{number}')
     input(type='submit')
 
-  <script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
   script(src='/scripts/index.js')
