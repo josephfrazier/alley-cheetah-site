@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
   alleyCheetah({origin, destination, waypointGrid}).then(function ({route, waypoints}) {
     var link = alleyCheetah.getMapsLink({origin, destination, waypoints})
     res.send(`<a href=${link}>${link}</a>`);
-  });
+  }).catch(next)
 });
 
 module.exports = router;
