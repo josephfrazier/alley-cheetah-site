@@ -58,5 +58,7 @@ function setupAutocomplete (aroundLatLng) {
       aroundLatLng,
       aroundRadius: 12875, // 8 miles
     })
+    document.querySelector(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
+    document.querySelector(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
   })
 }
