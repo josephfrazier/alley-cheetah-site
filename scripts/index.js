@@ -1,6 +1,11 @@
 var places = require('places.js')
+var promisedLocation = require('promised-location')
 
 var $ = s => document.querySelector(s)
+
+promisedLocation().then(function ({coords: {latitude, longitude}}) {
+  $('#origin').value = latitude + ',' + longitude
+})
 
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
   const origin = 'Hudson Yards Park'
