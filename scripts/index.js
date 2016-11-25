@@ -1,4 +1,5 @@
 var places = require('places.js')
+var promisedLocation = require('promised-location')
 
 document.querySelector('#autofillDemo').addEventListener('click', function autofillDemo () {
   const origin = 'Hudson Yards Park'
@@ -38,17 +39,21 @@ document.querySelector('#autofillDemo').addEventListener('click', function autof
   $('#D4').value = grid[3][3]
 });
 
-[
-  '#origin', '#destination',
-  '#A1', '#A2', '#A3', '#A4', '#A5',
-  '#B1', '#B2', '#B3', '#B4', '#B5',
-  '#C1', '#C2', '#C3', '#C4', '#C5',
-  '#D1', '#D2', '#D3', '#D4', '#D5',
-  '#E1', '#E2', '#E3', '#E4', '#E5',
-].forEach(function (id) {
-  places({
-    container: id,
-    aroundLatLng: '40.7128,-74.0059',
-    aroundRadius: 12875, // 8 miles
+promisedLocation().then(function ({coords: {latitude, longitude}}) {
+  return [latitude, longitude].join(',')
+}).catch(() => '40.7128,-74.0059').then(function (aroundLatLng) {
+  [
+    '#origin', '#destination',
+    '#A1', '#A2', '#A3', '#A4', '#A5',
+    '#B1', '#B2', '#B3', '#B4', '#B5',
+    '#C1', '#C2', '#C3', '#C4', '#C5',
+    '#D1', '#D2', '#D3', '#D4', '#D5',
+    '#E1', '#E2', '#E3', '#E4', '#E5',
+  ].forEach(function (id) {
+    places({
+      container: id,
+      aroundLatLng,
+      aroundRadius: 12875, // 8 miles
+    })
   })
 })
