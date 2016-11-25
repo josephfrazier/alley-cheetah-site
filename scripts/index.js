@@ -1,5 +1,4 @@
 var places = require('places.js')
-var promisedLocation = require('promised-location')
 
 document.querySelector('#autofillDemo').addEventListener('click', function autofillDemo () {
   const origin = 'Hudson Yards Park'
@@ -40,9 +39,6 @@ document.querySelector('#autofillDemo').addEventListener('click', function autof
 });
 
 setupAutocomplete('40.7128,-74.0059')
-promisedLocation().then(function ({coords: {latitude, longitude}}) {
-  setupAutocomplete([latitude, longitude].join(','))
-})
 
 function setupAutocomplete (aroundLatLng) {
   [
@@ -57,6 +53,7 @@ function setupAutocomplete (aroundLatLng) {
       container: id,
       aroundLatLng,
       aroundRadius: 12875, // 8 miles
+      useDeviceLocation: true,
     })
     document.querySelector(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
     document.querySelector(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
