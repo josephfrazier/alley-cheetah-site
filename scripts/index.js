@@ -63,12 +63,11 @@ function setupAutocomplete (selector) {
 
   // On Android, don't submit the form when the "Go button" (has an arrow icon on my keyboard) is pressed after filling in a field
   // Instead, just blur the field so that the user can select the next one.
-  // TODO automatically focus the next field
   // https://stackoverflow.com/questions/6545086/html-why-does-android-browser-show-go-instead-of-next-in-keyboard/30721284#30721284
   $(selector).addEventListener('keypress', function key(event) {
     if (event.charCode == 13 && /Android/.test(navigator.userAgent)) {
       event.preventDefault();
-      this.blur()
+      getNextInput(this.id).focus()
     }
   })
 
@@ -78,4 +77,12 @@ function setupAutocomplete (selector) {
     aroundRadius: 12875, // 8 miles
     useDeviceLocation: true,
   })
+}
+
+function getNextInput (id) {
+  var selector = '#' + id;
+  var selectors = Object.keys(addressFields);
+  var index = selectors.indexOf(selector)
+  var nextSelector = selectors[index + 1] || 'input[type="submit"]'
+  return $(nextSelector)
 }
