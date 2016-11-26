@@ -67,6 +67,18 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
 function setupAutocomplete (id) {
   $(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
   $(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
+
+  // On Android, don't submit the form when the "Go button" (has an arrow icon on my keyboard) is pressed after filling in a field
+  // Instead, just blur the field so that the user can select the next one.
+  // TODO automatically focus the next field
+  // https://stackoverflow.com/questions/6545086/html-why-does-android-browser-show-go-instead-of-next-in-keyboard/30721284#30721284
+  $(id).addEventListener('keypress', function key(event) {
+    if (event.charCode == 13 && /Android/.test(navigator.userAgent)) {
+      event.preventDefault();
+      this.blur()
+    }
+  })
+
   return places({
     container: id,
     aroundLatLng: '40.7128,-74.0059',
