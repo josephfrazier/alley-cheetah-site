@@ -3,9 +3,8 @@ var promisedLocation = require('promised-location')
 
 var $ = s => document.querySelector(s)
 
-var originAutocompleter = setupAutocomplete('#origin')
 var addressFields = [
-  '#destination',
+  '#origin', '#destination',
   '#A1', '#A2', '#A3', '#A4', '#A5',
   '#B1', '#B2', '#B3', '#B4', '#B5',
   '#C1', '#C2', '#C3', '#C4', '#C5',
@@ -14,10 +13,13 @@ var addressFields = [
   '#babyFood1', '#babyFood2',
 ]
 
-addressFields.forEach(setupAutocomplete)
+var autocompleters = addressFields.reduce(function (result, id) {
+  result[id] = setupAutocomplete(id)
+  return result
+}, {})
 
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
-  originAutocompleter.setVal(latitude + ',' + longitude)
+  autocompleters['#origin'].setVal(latitude + ',' + longitude)
 })
 
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
@@ -37,31 +39,31 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
     '137 East 2nd St, NYC'
   ]
 
-  $('#origin').value = 'Hudson Yards Park'
-  $('#destination').value = '440 Grand St'
+  autocompleters['#origin'].setVal('Hudson Yards Park')
+  autocompleters['#destination'].setVal('440 Grand St')
 
-  $('#A1').value = grid[0][0]
-  $('#A2').value = grid[0][1]
-  $('#A3').value = grid[0][2]
-  $('#A4').value = grid[0][3]
+  autocompleters['#A1'].setVal(grid[0][0])
+  autocompleters['#A2'].setVal(grid[0][1])
+  autocompleters['#A3'].setVal(grid[0][2])
+  autocompleters['#A4'].setVal(grid[0][3])
 
-  $('#B1').value = grid[1][0]
-  $('#B2').value = grid[1][1]
-  $('#B3').value = grid[1][2]
-  $('#B4').value = grid[1][3]
+  autocompleters['#B1'].setVal(grid[1][0])
+  autocompleters['#B2'].setVal(grid[1][1])
+  autocompleters['#B3'].setVal(grid[1][2])
+  autocompleters['#B4'].setVal(grid[1][3])
 
-  $('#C1').value = grid[2][0]
-  $('#C2').value = grid[2][1]
-  $('#C3').value = grid[2][2]
-  $('#C4').value = grid[2][3]
+  autocompleters['#C1'].setVal(grid[2][0])
+  autocompleters['#C2'].setVal(grid[2][1])
+  autocompleters['#C3'].setVal(grid[2][2])
+  autocompleters['#C4'].setVal(grid[2][3])
 
-  $('#D1').value = grid[3][0]
-  $('#D2').value = grid[3][1]
-  $('#D3').value = grid[3][2]
-  $('#D4').value = grid[3][3]
+  autocompleters['#D1'].setVal(grid[3][0])
+  autocompleters['#D2'].setVal(grid[3][1])
+  autocompleters['#D3'].setVal(grid[3][2])
+  autocompleters['#D4'].setVal(grid[3][3])
 
-  $('#babyFood1').value = babyFoodStops[0]
-  $('#babyFood2').value = babyFoodStops[1]
+  autocompleters['#babyFood1'].setVal(babyFoodStops[0])
+  autocompleters['#babyFood2'].setVal(babyFoodStops[1])
 });
 
 function setupAutocomplete (id) {
