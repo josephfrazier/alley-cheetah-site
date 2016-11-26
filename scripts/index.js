@@ -19,6 +19,11 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
     ['10 Union Sq. East, NYC', '225 W. 57th St, NYC', '609 Columbus Ave, NYC', '2217 7th Ave, NYC']
   ]
 
+  const babyFoodStops = [
+    '441 West 26th St, NYC',
+    '137 East 2nd St, NYC'
+  ]
+
   $('#origin').value = 'Hudson Yards Park'
   $('#destination').value = '440 Grand St'
 
@@ -41,6 +46,9 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
   $('#D2').value = grid[3][1]
   $('#D3').value = grid[3][2]
   $('#D4').value = grid[3][3]
+
+  $('#babyFood1').value = babyFoodStops[0]
+  $('#babyFood2').value = babyFoodStops[1]
 });
 
 setupAutocomplete('40.7128,-74.0059')
@@ -53,6 +61,7 @@ function setupAutocomplete (aroundLatLng) {
     '#C1', '#C2', '#C3', '#C4', '#C5',
     '#D1', '#D2', '#D3', '#D4', '#D5',
     '#E1', '#E2', '#E3', '#E4', '#E5',
+    '#babyFood1', '#babyFood2',
   ].forEach(function (id) {
     places({
       container: id,

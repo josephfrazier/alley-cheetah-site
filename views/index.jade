@@ -26,6 +26,13 @@ block content
           each number in [1,2,3,4,5]
             td
               input(type='text', name='row#{letter}', id='#{letter}#{number}')
+
+    label(for='babyFood1')
+      p Baby Food Stops:
+
+    input(type='text', name='babyFoodStops', id='babyFood1')
+    input(type='text', name='babyFoodStops', id='babyFood2')
+
     input(type='submit')
 
   script(src='/scripts/index.js')
