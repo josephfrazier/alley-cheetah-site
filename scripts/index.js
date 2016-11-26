@@ -60,8 +60,5 @@ function setupAutocomplete (id) {
     aroundLatLng: '40.7128,-74.0059',
     aroundRadius: 12875, // 8 miles
     useDeviceLocation: true,
-    autocompleteOptions: {
-      autoselectOnBlur: false,
-    },
   })
 }
