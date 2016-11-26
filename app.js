@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var browserify = require('browserify-middleware');
+var httpsRedirect = require('express-https-redirect');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')));
 app.use('/scripts', browserify(path.join(__dirname, 'scripts')));
 
+app.use('/', httpsRedirect());
 app.use('/', index);
 app.use('/users', users);
 
