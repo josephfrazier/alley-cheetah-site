@@ -5,6 +5,9 @@ block content
   p #{title} helps you be the fastest cat of your local #[a(href='http://cranksgiving.org') Cranksgiving]. Fill in the form below, or #[a(id='autofillDemo' href="#") use demo values from Cranksgiving NYC 11].
 
   form(action='/users' method='post')
+    p
+      | #[label(for='origin') Origin]/
+      | #[label(for='destination') Destination]:
     input(type='text', name='origin', id='origin' placeholder='Origin')
 
     input(type='text', name='destination', id='destination' placeholder='Destination')
