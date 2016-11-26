@@ -39,8 +39,8 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
     '137 East 2nd St, NYC'
   ]
 
-  autocompleters['#origin'].setVal('Hudson Yards Park')
-  autocompleters['#destination'].setVal('440 Grand St')
+  autocompleters['#origin'].setVal(origin)
+  autocompleters['#destination'].setVal(destination)
 
   autocompleters['#A1'].setVal(grid[0][0])
   autocompleters['#A2'].setVal(grid[0][1])
