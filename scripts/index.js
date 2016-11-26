@@ -65,7 +65,7 @@ function setupAutocomplete (selector) {
   // Instead, just blur the field so that the user can select the next one.
   // https://stackoverflow.com/questions/6545086/html-why-does-android-browser-show-go-instead-of-next-in-keyboard/30721284#30721284
   $(selector).addEventListener('keypress', function key(event) {
-    if (event.charCode == 13) {
+    if (event.key == "Enter") {
       event.preventDefault();
       getNextInput(this.id).focus()
     }
