@@ -23,47 +23,21 @@ promisedLocation().then(function ({coords: {latitude, longitude}}) {
 })
 
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
-  const origin = 'Hudson Yards Park'
-  const destination = '440 Grand St'
-
   // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
-  const grid = [
-    ['221-225 8th Ave, 10011', '907 8th Ave, NYC', '289 Columbus Ave, NYC', '25 University Pl, NYC'],
-    ['512 2nd Ave, NYC', '452 W 43rd St., NYC', '1407 Lexington Ave, NYC', '316 Greenwich St, NYC'],
-    ['311 E 23rd St, NYC', '580 9th Ave, NYC', '2704 Broadway, NYC', '5 St. James Pl, NYC'],
-    ['10 Union Sq. East, NYC', '225 W. 57th St, NYC', '609 Columbus Ave, NYC', '2217 7th Ave, NYC']
-  ]
+  var demoValues = {
+    origin: 'Hudson Yards Park',
+    destination: '440 Grand St',
+    A1: '221-225 8th Ave, 10011', A2: '907 8th Ave, NYC', A3: '289 Columbus Ave, NYC', A4: '25 University Pl, NYC',
+    B1: '512 2nd Ave, NYC', B2: '452 W 43rd St., NYC', B3: '1407 Lexington Ave, NYC', B4: '316 Greenwich St, NYC',
+    C1: '311 E 23rd St, NYC', C2: '580 9th Ave, NYC', C3: '2704 Broadway, NYC', C4: '5 St. James Pl, NYC',
+    D1: '10 Union Sq. East, NYC', D2: '225 W. 57th St, NYC', D3: '609 Columbus Ave, NYC', D4: '2217 7th Ave, NYC',
+    babyFood1: '441 West 26th St, NYC',
+    babyFood2: '137 East 2nd St, NYC',
+  }
 
-  const babyFoodStops = [
-    '441 West 26th St, NYC',
-    '137 East 2nd St, NYC'
-  ]
-
-  autocompleters['#origin'].setVal(origin)
-  autocompleters['#destination'].setVal(destination)
-
-  autocompleters['#A1'].setVal(grid[0][0])
-  autocompleters['#A2'].setVal(grid[0][1])
-  autocompleters['#A3'].setVal(grid[0][2])
-  autocompleters['#A4'].setVal(grid[0][3])
-
-  autocompleters['#B1'].setVal(grid[1][0])
-  autocompleters['#B2'].setVal(grid[1][1])
-  autocompleters['#B3'].setVal(grid[1][2])
-  autocompleters['#B4'].setVal(grid[1][3])
-
-  autocompleters['#C1'].setVal(grid[2][0])
-  autocompleters['#C2'].setVal(grid[2][1])
-  autocompleters['#C3'].setVal(grid[2][2])
-  autocompleters['#C4'].setVal(grid[2][3])
-
-  autocompleters['#D1'].setVal(grid[3][0])
-  autocompleters['#D2'].setVal(grid[3][1])
-  autocompleters['#D3'].setVal(grid[3][2])
-  autocompleters['#D4'].setVal(grid[3][3])
-
-  autocompleters['#babyFood1'].setVal(babyFoodStops[0])
-  autocompleters['#babyFood2'].setVal(babyFoodStops[1])
+  Object.keys(demoValues).forEach(function (id) {
+    autocompleters['#' + id].setVal(demoValues[id]);
+  });
 });
 
 function setupAutocomplete (id) {
