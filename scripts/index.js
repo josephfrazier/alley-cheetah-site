@@ -3,6 +3,18 @@ var promisedLocation = require('promised-location')
 
 var $ = s => document.querySelector(s)
 
+var addressFields = [
+  '#origin', '#destination',
+  '#A1', '#A2', '#A3', '#A4', '#A5',
+  '#B1', '#B2', '#B3', '#B4', '#B5',
+  '#C1', '#C2', '#C3', '#C4', '#C5',
+  '#D1', '#D2', '#D3', '#D4', '#D5',
+  '#E1', '#E2', '#E3', '#E4', '#E5',
+  '#babyFood1', '#babyFood2',
+]
+
+addressFields.forEach(setupAutocomplete)
+
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
   $('#origin').value = latitude + ',' + longitude
 })
@@ -51,25 +63,16 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
   $('#babyFood2').value = babyFoodStops[1]
 });
 
-setupAutocomplete('40.7128,-74.0059')
-
-function setupAutocomplete (aroundLatLng) {
-  [
-    '#origin', '#destination',
-    '#A1', '#A2', '#A3', '#A4', '#A5',
-    '#B1', '#B2', '#B3', '#B4', '#B5',
-    '#C1', '#C2', '#C3', '#C4', '#C5',
-    '#D1', '#D2', '#D3', '#D4', '#D5',
-    '#E1', '#E2', '#E3', '#E4', '#E5',
-    '#babyFood1', '#babyFood2',
-  ].forEach(function (id) {
-    places({
-      container: id,
-      aroundLatLng,
-      aroundRadius: 12875, // 8 miles
-      useDeviceLocation: true,
-    })
-    $(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
-    $(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
+function setupAutocomplete (id) {
+  $(id).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
+  $(id).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
+  return places({
+    container: id,
+    aroundLatLng: '40.7128,-74.0059',
+    aroundRadius: 12875, // 8 miles
+    useDeviceLocation: true,
+    autocompleteOptions: {
+      autoselectOnBlur: false,
+    },
   })
 }
