@@ -3,8 +3,9 @@ var promisedLocation = require('promised-location')
 
 var $ = s => document.querySelector(s)
 
+var originAutocompleter = setupAutocomplete('#origin')
 var addressFields = [
-  '#origin', '#destination',
+  '#destination',
   '#A1', '#A2', '#A3', '#A4', '#A5',
   '#B1', '#B2', '#B3', '#B4', '#B5',
   '#C1', '#C2', '#C3', '#C4', '#C5',
@@ -16,7 +17,7 @@ var addressFields = [
 addressFields.forEach(setupAutocomplete)
 
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
-  $('#origin').value = latitude + ',' + longitude
+  originAutocompleter.setVal(latitude + ',' + longitude)
 })
 
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
