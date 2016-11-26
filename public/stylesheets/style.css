@@ -12,6 +12,10 @@ table, input[type='text'] {
   box-sizing: border-box;
 }
 
+button.ap-input-icon.ap-icon-clear, button.ap-input-icon.ap-icon-pin {
+  display: none !important;
+}
+
 .algolia-places.focused {
   position: fixed !important;
   left: 0 !important;
