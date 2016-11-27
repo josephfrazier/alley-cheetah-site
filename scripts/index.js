@@ -39,7 +39,7 @@ var addressFields = {
   '#E5': '',
 
   '#babyFood1': '441 West 26th St, NYC',
-  '#babyFood2': '137 East 2nd St, NYC',
+  '#babyFood2': '137 East 2nd St, NYC'
 }
 
 var autocompleters = Object.keys(addressFields).reduce(function (result, selector) {
@@ -53,20 +53,20 @@ promisedLocation().then(function ({coords: {latitude, longitude}}) {
 
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
   Object.keys(addressFields).forEach(function (selector) {
-    autocompleters[selector].setVal(addressFields[selector]);
-  });
-});
+    autocompleters[selector].setVal(addressFields[selector])
+  })
+})
 
 function setupAutocomplete (selector) {
-  $(selector).addEventListener('focus', function () {this.parentElement.classList.add('focused')})
-  $(selector).addEventListener('blur', function () {this.parentElement.classList.remove('focused')})
+  $(selector).addEventListener('focus', function () { this.parentElement.classList.add('focused') })
+  $(selector).addEventListener('blur', function () { this.parentElement.classList.remove('focused') })
 
   // On Android, don't submit the form when the "Go button" (has an arrow icon on my keyboard) is pressed after filling in a field
   // Instead, just blur the field so that the user can select the next one.
   // https://stackoverflow.com/questions/6545086/html-why-does-android-browser-show-go-instead-of-next-in-keyboard/30721284#30721284
-  $(selector).addEventListener('keypress', function key(event) {
-    if (event.key == "Enter") {
-      event.preventDefault();
+  $(selector).addEventListener('keypress', function key (event) {
+    if (event.key === 'Enter') {
+      event.preventDefault()
       getNextInput(this.id).focus()
     }
   })
@@ -75,13 +75,13 @@ function setupAutocomplete (selector) {
     container: selector,
     aroundLatLng: '40.7128,-74.0059',
     aroundRadius: 12875, // 8 miles
-    useDeviceLocation: true,
+    useDeviceLocation: true
   })
 }
 
 function getNextInput (id) {
-  var selector = '#' + id;
-  var selectors = Object.keys(addressFields);
+  var selector = '#' + id
+  var selectors = Object.keys(addressFields)
   var index = selectors.indexOf(selector)
   var nextSelector = selectors[index + 1] || 'input[type="submit"]'
   return $(nextSelector)
