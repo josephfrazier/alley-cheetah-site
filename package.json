@@ -24,6 +24,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "jsdom": "^9.8.3",
     "localtunnel": "^1.8.2",
     "standard": "^8.6.0"
   }

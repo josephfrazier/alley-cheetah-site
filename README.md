@@ -8,4 +8,5 @@
 * Scrape grocery store addresses and prioritize them in autocomplete?
   * http://supermarketpage.com/supermarketlist.php
   * https://community.algolia.com/places/documentation.html#autocompletejs
+  * https://www.algolia.com/explorer#?index=ny_supermarkets
 * Use speech recognition or OCR to allow easier input?
