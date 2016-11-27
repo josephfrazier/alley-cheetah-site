@@ -1,10 +1,10 @@
-var places = require('places.js')
-var promisedLocation = require('promised-location')
+const places = require('places.js')
+const promisedLocation = require('promised-location')
 
-var $ = s => document.querySelector(s)
+const $ = s => document.querySelector(s)
 
 // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
-var addressFields = {
+const addressFields = {
   '#origin': 'Hudson Yards Park',
   '#destination': '440 Grand St',
 
@@ -42,7 +42,7 @@ var addressFields = {
   '#babyFood2': '137 East 2nd St, NYC'
 }
 
-var autocompleters = Object.keys(addressFields).reduce(function (result, selector) {
+const autocompleters = Object.keys(addressFields).reduce(function (result, selector) {
   result[selector] = setupAutocomplete(selector)
   return result
 }, {})
@@ -80,9 +80,9 @@ function setupAutocomplete (selector) {
 }
 
 function getNextInput (id) {
-  var selector = '#' + id
-  var selectors = Object.keys(addressFields)
-  var index = selectors.indexOf(selector)
-  var nextSelector = selectors[index + 1] || 'input[type="submit"]'
+  const selector = '#' + id
+  const selectors = Object.keys(addressFields)
+  const index = selectors.indexOf(selector)
+  const nextSelector = selectors[index + 1] || 'input[type="submit"]'
   return $(nextSelector)
 }
