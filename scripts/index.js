@@ -58,8 +58,15 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
 })
 
 function setupAutocomplete (selector) {
-  $(selector).addEventListener('focus', function () { this.parentElement.classList.add('focused') })
-  $(selector).addEventListener('blur', function () { this.parentElement.classList.remove('focused') })
+  $(selector).addEventListener('focus', function () {
+    this.parentElement.classList.add('focused')
+    $('#overlay').classList.add('active')
+  })
+
+  $(selector).addEventListener('blur', function () {
+    this.parentElement.classList.remove('focused')
+    $('#overlay').classList.remove('active')
+  })
 
   // On Android, don't submit the form when the "Go button" (has an arrow icon on my keyboard) is pressed after filling in a field
   // Instead, just blur the field so that the user can select the next one.
