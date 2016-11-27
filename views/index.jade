@@ -11,6 +11,11 @@ block content
     input(type='text', name='origin', id='origin' placeholder='Origin' required)
     input(type='text', name='destination', id='destination' placeholder='Destination' required)
 
+    p Waypoint Constraints:
+    ul
+      li
+        label(for='eliminateColumns') #[input(type="checkbox" name="eliminateColumns" checked)] Choose one per column
+
     label(for='A1')
       p Waypoints:
     table

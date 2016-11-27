@@ -9,7 +9,7 @@ const memoizeFn = memoize.fn
 module.exports = router
 
 router.post('/', function (req, res, next) {
-  const {origin, destination} = req.body
+  const {origin, destination, eliminateColumns} = req.body
   const babyFoodStops = removeEmptyItems(req.body.babyFoodStops)
   const waypointGrid = removeEmptyCells([
     req.body.rowA,
@@ -18,8 +18,9 @@ router.post('/', function (req, res, next) {
     req.body.rowD,
     req.body.rowE
   ])
+  const waypointOptions = {eliminateColumns: eliminateColumns === 'on'}
 
-  alleyCheetah({origin, destination, waypointGrid, babyFoodStops, memoizeFn}).then(function ({route, waypoints}) {
+  alleyCheetah({origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn}).then(function ({route, waypoints}) {
     const link = alleyCheetah.getMapsLink({origin, destination, waypoints})
     res.send(`<a href=${link}>${link}</a>`)
   }).catch(next)
