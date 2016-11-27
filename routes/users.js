@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const alleyCheetah = require('alley-cheetah')
 const cachePath = require('path').join(__dirname, '..', 'cache')
-const memoize = require('memoize-fs')({ cachePath: cachePath })
+const memoize = require('memoize-fs')({ cachePath })
 
 const memoizeFn = memoize.fn
 
