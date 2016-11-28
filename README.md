@@ -2,7 +2,6 @@
 
 # TODOs / Braindump
 
-* Make checkbox labels clickable to toggle checkbox
 * Save form values in case user submits early or leaves page
   * https://github.com/guillaumepotier/garlic.js
   * https://github.com/simsalabim/sisyphus
