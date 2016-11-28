@@ -90,6 +90,6 @@ function getNextInput (id) {
   const selector = '#' + id
   const selectors = Object.keys(addressFields)
   const index = selectors.indexOf(selector)
-  const nextSelector = selectors[index + 1] || 'input[type="submit"]'
+  const nextSelector = selectors[index + 1] || '[type="submit"]'
   return $(nextSelector)
 }
