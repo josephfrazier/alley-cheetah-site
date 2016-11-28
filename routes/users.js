@@ -3,22 +3,33 @@ const router = express.Router()
 const alleyCheetah = require('alley-cheetah')
 const cachePath = require('path').join(__dirname, '..', 'cache')
 const memoize = require('memoize-fs')({ cachePath })
+const transpose = require('transpose')
 
 const memoizeFn = memoize.fn
 
 module.exports = router
 
 router.post('/', function (req, res, next) {
-  const {origin, destination, eliminateColumns} = req.body
+  const {origin, destination} = req.body
+  let eliminateRows = req.body.eliminateRows === 'on'
+  let eliminateColumns = req.body.eliminateColumns === 'on'
   const babyFoodStops = removeEmptyItems(req.body.babyFoodStops)
-  const waypointGrid = removeEmptyCells([
+  let waypointGrid = [
     req.body.rowA,
     req.body.rowB,
     req.body.rowC,
     req.body.rowD,
     req.body.rowE
-  ])
-  const waypointOptions = {eliminateColumns: eliminateColumns === 'on'}
+  ]
+  if (!eliminateRows && !eliminateColumns) {
+    return res.send('You have to choose one per row, one per column, or both')
+  } else if (!eliminateRows && eliminateColumns) {
+    waypointGrid = transpose(waypointGrid)
+    eliminateColumns = false
+    eliminateRows = true
+  }
+  waypointGrid = removeEmptyCells(waypointGrid)
+  const waypointOptions = {eliminateColumns}
 
   alleyCheetah({origin, destination, waypointGrid, waypointOptions, babyFoodStops, memoizeFn}).then(function ({route, waypoints}) {
     const link = alleyCheetah.getMapsLink({origin, destination, waypoints})
