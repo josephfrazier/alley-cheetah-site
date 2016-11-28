@@ -2,6 +2,7 @@
 
 # TODOs / Braindump
 
+* Use a view to make the result page look better: http://expressjs.com/en/4x/api.html#res.render
 * Save form values in case user submits early or leaves page
   * https://github.com/guillaumepotier/garlic.js
   * https://github.com/simsalabim/sisyphus
