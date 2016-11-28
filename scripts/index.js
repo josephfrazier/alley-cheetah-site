@@ -57,6 +57,15 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
   })
 })
 
+$('form').addEventListener('submit', function (event) {
+  const eliminateRows = $('[name="eliminateRows"]').checked
+  const eliminateColumns = $('[name="eliminateColumns"]').checked
+  if (!eliminateRows && !eliminateColumns) {
+    event.preventDefault()
+    window.alert('You have to choose one per row, one per column, or both')
+  }
+})
+
 function setupAutocomplete (selector) {
   $(selector).addEventListener('focus', function () {
     this.parentElement.classList.add('focused')
