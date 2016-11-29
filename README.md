@@ -11,6 +11,7 @@
   # This doesn't work:
   cat node_modules/got/index.js | uglifyjs -cm
   ```
+  * The above happens because babelify isn't global by default: https://github.com/babel/babelify#why-arent-files-in-node_modules-being-transformed
 * Generate a static map with markers showing all locations?
   * https://developers.google.com/maps/documentation/static-maps/intro#Markers
   * Note that the labels can only be one character, so colors would have to differentiate either rows or columns
