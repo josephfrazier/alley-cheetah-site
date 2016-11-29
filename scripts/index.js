@@ -80,6 +80,16 @@ promisedLocation().then(function ({coords: {latitude, longitude}}) {
   autocompleters['#origin'].setVal(latitude + ',' + longitude)
 })
 
+$('#clearForm').addEventListener('click', function clearForm () {
+  Array.from(document.querySelectorAll('input')).forEach(function (input) {
+    const selector = '#' + input.id
+    const autocompleter = autocompleters[selector]
+    if (autocompleter) {
+      autocompleter.setVal('')
+    }
+  })
+})
+
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
   Object.keys(addressFields).forEach(function (selector) {
     autocompleters[selector].setVal(addressFields[selector])
