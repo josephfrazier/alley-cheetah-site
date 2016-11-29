@@ -5,41 +5,41 @@ block content
   p #{title} helps you be the fastest cat of your local #[a(href='http://cranksgiving.org') Cranksgiving]. Fill in the form below, or #[a(id='autofillDemo' href="#") use demo values] from this #[a(href='/images/manifest.jpg') manifest].
 
   form(action='/users' method='post')
-    p
-      | #[label(for='origin') Origin]/
-      | #[label(for='destination') Destination]:
-    input(type='text', name='origin', id='origin' placeholder='Origin' required)
-    input(type='text', name='destination', id='destination' placeholder='Destination' required)
+    fieldset
+      legend Origin/Destination:
+      input(type='text', name='origin', id='origin' placeholder='Origin' required)
+      input(type='text', name='destination', id='destination' placeholder='Destination' required)
 
-    p Waypoint Constraints:
-    ul
-      li
-        label #[input(type="checkbox" name="eliminateRows" checked)] Choose one per row
-      li
-        label #[input(type="checkbox" name="eliminateColumns" checked)] Choose one per column
+    fieldset
+      legend Waypoint Constraints:
+      ul
+        li
+          label #[input(type="checkbox" name="eliminateRows" checked)] Choose one per row
+        li
+          label #[input(type="checkbox" name="eliminateColumns" checked)] Choose one per column
 
-    label(for='A1')
-      p Waypoints:
-    table
-      thead
-        tr
-          th
-          th 1
-          th 2
-          th 3
-          th 4
-          th 5
-      each letter in ['A', 'B', 'C', 'D', 'E']
-        tr
-          th #{letter}
-          each number in [1,2,3,4,5]
-            td
-              input(type='text', name='row#{letter}', id='#{letter}#{number}', placeholder='#{letter}#{number}')
+    fieldset
+      legend Waypoints:
+      table
+        thead
+          tr
+            th
+            th 1
+            th 2
+            th 3
+            th 4
+            th 5
+        each letter in ['A', 'B', 'C', 'D', 'E']
+          tr
+            th #{letter}
+            each number in [1,2,3,4,5]
+              td
+                input(type='text', name='row#{letter}', id='#{letter}#{number}', placeholder='#{letter}#{number}')
 
-    label(for='babyFood1')
-      p Baby Food Stops:
-    input(type='text', name='babyFoodStops', id='babyFood1', placeholder='Baby Food Stop 1')
-    input(type='text', name='babyFoodStops', id='babyFood2', placeholder='Baby Food Stop 2')
+    fieldset
+      legend Baby Food Stops:
+      input(type='text', name='babyFoodStops', id='babyFood1', placeholder='Baby Food Stop 1')
+      input(type='text', name='babyFoodStops', id='babyFood2', placeholder='Baby Food Stop 2')
 
     button(type='submit') Submit
 
