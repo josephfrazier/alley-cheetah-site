@@ -66,7 +66,7 @@ function restoreFieldValues () {
 window.addEventListener('unload', persistFieldValues)
 
 function persistFieldValues () {
-  var fieldValues = Array.from(document.querySelectorAll('input')).map(function (input) {
+  const fieldValues = Array.from(document.querySelectorAll('input')).map(function (input) {
     return {
       selector: '#' + input.id,
       value: input.value,
@@ -129,8 +129,8 @@ function showResults (innerHTML) {
 
 // adapted from https://stackoverflow.com/questions/7542586/new-formdata-application-x-www-form-urlencoded/38931547#38931547
 function urlencodeFormData (formData) {
-  var params = new window.URLSearchParams()
-  for (var pair of formData.entries()) {
+  const params = new window.URLSearchParams()
+  for (const pair of formData.entries()) {
     if (typeof pair[1] === 'string') {
       params.append(pair[0], pair[1])
     }
