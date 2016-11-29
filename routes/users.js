@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
     req.body.rowE
   ]
   if (!eliminateRows && !eliminateColumns) {
-    return res.send('You have to choose one per row, one per column, or both')
+    throw Error('You have to choose one per row, one per column, or both')
   } else if (!eliminateRows && eliminateColumns) {
     waypointGrid = transpose(waypointGrid)
     eliminateColumns = false
