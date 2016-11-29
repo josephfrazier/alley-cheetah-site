@@ -16,6 +16,7 @@
     "express": "~4.14.0",
     "express-babelify-middleware": "^0.2.1",
     "express-https-redirect": "^1.0.0",
+    "got": "^6.6.3",
     "jade": "~1.11.0",
     "memoize-fs": "^1.0.5",
     "morgan": "~1.7.0",
@@ -24,6 +25,7 @@
     "pretty-ms": "^2.1.0",
     "promised-location": "^1.0.1",
     "serve-favicon": "~2.3.0",
+    "setimmediate": "^1.0.5",
     "transpose": "0.0.2"
   },
   "devDependencies": {

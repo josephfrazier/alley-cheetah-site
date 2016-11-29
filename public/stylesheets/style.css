@@ -78,3 +78,7 @@ ul {
 #overlay.active {
   display: block;
 }
+
+#results li {
+  margin: 1em 0
+}

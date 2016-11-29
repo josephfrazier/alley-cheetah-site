@@ -1,5 +1,7 @@
+require('setimmediate') // needed for `got`
 const places = require('places.js')
 const promisedLocation = require('promised-location')
+const got = require('got')
 
 const $ = s => document.querySelector(s)
 
@@ -58,13 +60,43 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
 })
 
 $('form').addEventListener('submit', function (event) {
+  event.preventDefault()
+
   const eliminateRows = $('[name="eliminateRows"]').checked
   const eliminateColumns = $('[name="eliminateColumns"]').checked
   if (!eliminateRows && !eliminateColumns) {
-    event.preventDefault()
-    window.alert('You have to choose one per row, one per column, or both')
+    return window.alert('You have to choose one per row, one per column, or both')
   }
+
+  showResults('Loading...')
+
+  const formData = new window.FormData($('form'))
+  const queryString = urlencodeFormData(formData)
+  got.post('/users', {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: queryString
+  }).catch(error => error.response).then(function (response) {
+    showResults(response.body)
+  })
 })
+
+function showResults (innerHTML) {
+  $('#results').innerHTML = innerHTML
+  $('#results').scrollIntoView({block: 'end', behavior: 'smooth'})
+}
+
+// adapted from https://stackoverflow.com/questions/7542586/new-formdata-application-x-www-form-urlencoded/38931547#38931547
+function urlencodeFormData (formData) {
+  var params = new window.URLSearchParams()
+  for (var pair of formData.entries()) {
+    if (typeof pair[1] === 'string') {
+      params.append(pair[0], pair[1])
+    }
+  }
+  return params.toString()
+}
 
 function setupAutocomplete (selector) {
   $(selector).addEventListener('focus', function () {
