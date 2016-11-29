@@ -43,7 +43,7 @@ button.ap-input-icon.ap-icon-clear, button.ap-input-icon.ap-icon-pin {
 
 ul {
   list-style: none;
-  padding: 0;
+  padding-left: 1em;
 }
 
 [type='submit'] {
