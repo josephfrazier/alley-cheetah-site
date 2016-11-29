@@ -4,7 +4,7 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const browserify = require('browserify-middleware')
+const babelify = require('express-babelify-middleware')
 const httpsRedirect = require('express-https-redirect')
 const compression = require('compression')
 
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')))
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
-app.use('/scripts', browserify(path.join(__dirname, 'scripts'), {
+app.use('/scripts', babelify(path.join(__dirname, 'scripts'), {
   debug: process.env.NODE_ENV != 'production'
 }))
 

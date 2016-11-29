@@ -10,11 +10,11 @@
   "dependencies": {
     "alley-cheetah": "git+https://github.com/josephfrazier/alley-cheetah.git",
     "body-parser": "~1.15.2",
-    "browserify-middleware": "^7.1.0",
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.14.0",
+    "express-babelify-middleware": "^0.2.1",
     "express-https-redirect": "^1.0.0",
     "jade": "~1.11.0",
     "memoize-fs": "^1.0.5",
