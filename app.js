@@ -25,9 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')))
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
-app.use('/scripts', babelify(path.join(__dirname, 'scripts'), {
-  debug: process.env.NODE_ENV != 'production'
-}))
+app.use('/scripts', babelify(path.join(__dirname, 'scripts')))
 
 app.use('/', httpsRedirect())
 app.use('/', index)
