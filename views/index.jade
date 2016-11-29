@@ -2,7 +2,10 @@ extends layout
 
 block content
   h1= title
-  p #{title} helps you be the fastest cat of your local #[a(href='http://cranksgiving.org') Cranksgiving]. Fill in the form below, or #[a(id='autofillDemo' href="#") use demo values] from this #[a(href='/images/manifest.jpg') manifest]. You can also #[a(id='clearForm' href='#') clear the form].
+  p.
+    #{title} helps you be the fastest cat of your local #[a(href='http://cranksgiving.org') Cranksgiving].
+    Fill in the form below, or #[a(id='autofillDemo' href="#") use demo values] from this #[a(href='/images/manifest.jpg') manifest].
+    You can also #[a(id='clearForm' href='#') clear the form].
 
   form(action='/users' method='post')
     fieldset
