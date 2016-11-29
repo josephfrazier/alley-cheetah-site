@@ -32,6 +32,11 @@ button.ap-input-icon.ap-icon-clear, button.ap-input-icon.ap-icon-pin {
   background: lightyellow;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 [type='submit'] {
   width: 100%;
   line-height: 3em;
