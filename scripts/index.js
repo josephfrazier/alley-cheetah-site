@@ -49,6 +49,33 @@ const autocompleters = Object.keys(addressFields).reduce(function (result, selec
   return result
 }, {})
 
+restoreFieldValues()
+
+function restoreFieldValues () {
+  JSON.parse(window.localStorage.fieldValues || '[]').forEach(function (field) {
+    const autocompleter = autocompleters[field.selector]
+    if (autocompleter) {
+      autocompleter.setVal(field.value)
+    } else {
+      $(field.selector).checked = field.checked
+    }
+  })
+}
+
+// 'beforeunload' didn't work for me on Android
+window.addEventListener('unload', persistFieldValues)
+
+function persistFieldValues () {
+  var fieldValues = Array.from(document.querySelectorAll('input')).map(function (input) {
+    return {
+      selector: '#' + input.id,
+      value: input.value,
+      checked: input.checked
+    }
+  })
+  window.localStorage.fieldValues = JSON.stringify(fieldValues, null, 2)
+}
+
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
   autocompleters['#origin'].setVal(latitude + ',' + longitude)
 })
