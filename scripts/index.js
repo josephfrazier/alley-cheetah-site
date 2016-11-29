@@ -142,6 +142,7 @@ function setupAutocomplete (selector) {
   $(selector).addEventListener('focus', function () {
     this.parentElement.classList.add('focused')
     $('#overlay').classList.add('active')
+    this.select()
   })
 
   $(selector).addEventListener('blur', function () {
