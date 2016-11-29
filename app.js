@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')))
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
-app.use('/scripts', browserify(path.join(__dirname, 'scripts'), {
+app.use('/scripts/index.js', browserify(path.join(__dirname, 'scripts', 'index.js'), {
   postcompile: function (source) {
     return babel.transform(source, {
       presets: [babelPresetEs2015],
