@@ -50,7 +50,7 @@ router.post('/', function (req, res, next) {
         const humanizedDuration = prettyMs(1000 * duration)
 
         const link = alleyCheetah.getMapsLink({origin, destination, waypoints})
-        responseBody += `<li>${description} ${routeSortKey} (${humanizedDistance}, ${humanizedDuration}): <a href=${link}>${link}</a></li>`
+        responseBody += `<li><a href=${link}>${description} ${routeSortKey} (${humanizedDistance}, ${humanizedDuration})</a></li>`
       })
     })
     responseBody += '</ul>'
