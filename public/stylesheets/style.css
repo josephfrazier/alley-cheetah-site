@@ -17,6 +17,14 @@ input[type='text'] {
   padding-right: 16px;
 }
 
+input {
+  margin: 1ex 0;
+}
+
+table input {
+  margin: 0;
+}
+
 button.ap-input-icon.ap-icon-clear, button.ap-input-icon.ap-icon-pin {
   display: none !important;
 }
@@ -30,6 +38,7 @@ button.ap-input-icon.ap-icon-clear, button.ap-input-icon.ap-icon-pin {
 
 .algolia-places.focused input {
   background: lightyellow;
+  margin: 1ex 0;
 }
 
 ul {
