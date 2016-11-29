@@ -4,7 +4,9 @@ const favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
-const babelify = require('express-babelify-middleware')
+const browserify = require('browserify-middleware')
+const babel = require('babel-core')
+const babelPresetEs2015 = require('babel-preset-es2015')
 const httpsRedirect = require('express-https-redirect')
 const compression = require('compression')
 
@@ -25,7 +27,14 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')))
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
-app.use('/scripts', babelify(path.join(__dirname, 'scripts')))
+app.use('/scripts', browserify(path.join(__dirname, 'scripts'), {
+  postcompile: function (source) {
+    return babel.transform(source, {
+      presets: [babelPresetEs2015],
+      sourceMaps: "inline"
+    }).code
+  }
+}))
 
 app.use('/', httpsRedirect())
 app.use('/', index)
