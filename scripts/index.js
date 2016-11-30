@@ -80,8 +80,13 @@ function persistFieldValues () {
 $$('.geolocate').forEach(function (el) {
   const id = '#' + el.dataset.for
   el.addEventListener('click', function (event) {
+    const input = $(id)
+    input.placeholder = 'Loading...'
     promisedLocation().then(function ({coords: {latitude, longitude}}) {
+      input.placeholder = capitalizeFirstLetter(input.name)
       autocompleters[id].setVal(latitude + ',' + longitude)
+    }).catch(function (error) {
+      input.placeholder = error.message
     })
   })
 })
@@ -148,8 +153,14 @@ function urlencodeFormData (formData) {
   return params.toString()
 }
 
+// https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript/1026087#1026087
+function capitalizeFirstLetter (string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
 function setupAutocomplete (selector) {
   $(selector).addEventListener('focus', function () {
+    this.placeholder = capitalizeFirstLetter(this.name)
     this.parentElement.classList.add('focused')
     $('#overlay').classList.add('active')
     this.select()
