@@ -4,6 +4,7 @@ const promisedLocation = require('promised-location')
 const got = require('got')
 
 const $ = s => document.querySelector(s)
+const $$ = s => Array.from(document.querySelectorAll(s))
 
 // https://farm3.static.flickr.com/2778/4134507221_d0c9ec1b7c_o.jpg
 const addressFields = {
@@ -66,7 +67,7 @@ function restoreFieldValues () {
 window.addEventListener('unload', persistFieldValues)
 
 function persistFieldValues () {
-  const fieldValues = Array.from(document.querySelectorAll('input')).map(function (input) {
+  const fieldValues = $$('input').map(function (input) {
     return {
       selector: '#' + input.id,
       value: input.value,
@@ -81,7 +82,7 @@ promisedLocation().then(function ({coords: {latitude, longitude}}) {
 })
 
 $('#clearForm').addEventListener('click', function clearForm () {
-  Array.from(document.querySelectorAll('input')).forEach(function (input) {
+  $$('input').forEach(function (input) {
     const selector = '#' + input.id
     const autocompleter = autocompleters[selector]
     if (autocompleter) {
