@@ -19,6 +19,25 @@ legend {
   font-weight: bold;
 }
 
+.geolocate {
+  display: inline-block;
+  box-sizing: border-box;
+  height: 40px;
+  width: 40px;
+  margin: 1ex 0;
+  background: url(/images/target.svg);
+  background-size: cover;
+  font-size: 14px;
+}
+
+.endpoints .algolia-places {
+  float: right;
+  width: calc(100% - 50px);
+}
+.endpoints .algolia-places.focused {
+  width: 100%;
+}
+
 table {
   width: 100%;
 }

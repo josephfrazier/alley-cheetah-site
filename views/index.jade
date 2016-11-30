@@ -8,10 +8,14 @@ block content
     You can also #[a(id='clearForm' href='#') clear the form].
 
   form(action='/users' method='post')
-    fieldset
+    fieldset.endpoints
       legend Origin/Destination:
-      input(type='text', name='origin', id='origin' placeholder='Origin' required)
-      input(type='text', name='destination', id='destination' placeholder='Destination' required)
+      div
+        button.geolocate(data-for='origin' type='button')
+        input(type='text', name='origin', id='origin' placeholder='Origin' required)
+      div
+        button.geolocate(data-for='destination' type='button')
+        input(type='text', name='destination', id='destination' placeholder='Destination' required)
 
     fieldset
       legend Waypoint Constraints:

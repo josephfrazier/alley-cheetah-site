@@ -77,6 +77,15 @@ function persistFieldValues () {
   window.localStorage.fieldValues = JSON.stringify(fieldValues, null, 2)
 }
 
+$$('.geolocate').forEach(function (el) {
+  const id = '#' + el.dataset.for
+  el.addEventListener('click', function (event) {
+    promisedLocation().then(function ({coords: {latitude, longitude}}) {
+      autocompleters[id].setVal(latitude + ',' + longitude)
+    })
+  })
+})
+
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
   autocompleters['#origin'].setVal(latitude + ',' + longitude)
 })
