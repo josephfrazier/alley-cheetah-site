@@ -160,7 +160,9 @@ function capitalizeFirstLetter (string) {
 
 function setupAutocomplete (selector) {
   $(selector).addEventListener('focus', function () {
-    this.placeholder = capitalizeFirstLetter(this.name)
+    if (['origin', 'destination'].includes(this.name)) {
+      this.placeholder = capitalizeFirstLetter(this.name)
+    }
     this.parentElement.classList.add('focused')
     $('#overlay').classList.add('active')
     this.select()
