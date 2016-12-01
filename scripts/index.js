@@ -109,9 +109,6 @@ $('#autofillDemo').addEventListener('click', function autofillDemo () {
   Object.keys(addressFields).forEach(function (selector) {
     autocompleters[selector].setVal(addressFields[selector])
   })
-
-  $('[type="submit"]').focus()
-  $('[type="submit"]').click()
 })
 
 $('form').addEventListener('submit', function (event) {
