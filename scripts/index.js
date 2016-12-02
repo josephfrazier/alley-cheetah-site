@@ -92,7 +92,11 @@ $$('.geolocate').forEach(function (el) {
 })
 
 promisedLocation().then(function ({coords: {latitude, longitude}}) {
-  autocompleters['#origin'].setVal(latitude + ',' + longitude)
+  const autocompleter = autocompleters['#origin']
+  const originValue = autocompleter.getVal() || $('#origin').value
+  if (!originValue || originValue === '') {
+    autocompleter.setVal(latitude + ',' + longitude)
+  }
 })
 
 $('#clearForm').addEventListener('click', function clearForm () {
