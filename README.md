@@ -2,6 +2,9 @@
 
 # TODOs / Braindump
 
+* Show car routes as well (in case they're faster/shorter than bike routes)
+  * Highways/etc should be disabled
+  * This will cost extra API calls
 * Allow "n choose k" waypoint constraints (maybe require API key?)
 * Generate a static map with markers showing all locations?
   * https://developers.google.com/maps/documentation/static-maps/intro#Markers
