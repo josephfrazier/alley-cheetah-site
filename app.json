@@ -1,0 +1,8 @@
+{
+  "env": {
+    "GOOGLE_MAPS_API_KEY": {
+      "description": "Your Google Maps Directions API key. Get one here:\nhttps://developers.google.com/maps/documentation/directions/get-api-key",
+      "required": true
+    }
+  }
+}
