@@ -12,7 +12,7 @@ export DEBUG=server:*
 npm start
 ```
 
-then open http://localhost:3000
+then open <http://localhost:3000>
 
 # TODOs / Braindump
 
