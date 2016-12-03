@@ -1,5 +1,7 @@
 # alley-cheetah-site
 
+[![Build Status](https://travis-ci.org/josephfrazier/alley-cheetah-site.svg?branch=master)](https://travis-ci.org/josephfrazier/alley-cheetah-site)
+
 A website that helps find optimal routes for [alley cats](https://en.wikipedia.org/wiki/Alleycat_race) like [Cranksgiving](http://cranksgiving.org/).
 It uses the [Google Maps Directions API](https://developers.google.com/maps/documentation/directions/), so you'll need to [get an API key](https://developers.google.com/maps/documentation/directions/get-api-key) to run it.
 
