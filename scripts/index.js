@@ -81,6 +81,7 @@ $$('.geolocate').forEach(function (el) {
   const id = '#' + el.dataset.for
   el.addEventListener('click', function (event) {
     const input = $(id)
+    input.value = ''
     input.placeholder = 'Loading...'
     promisedLocation().then(function ({coords: {latitude, longitude}}) {
       input.placeholder = capitalizeFirstLetter(input.name)
