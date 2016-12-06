@@ -3,7 +3,6 @@ const places = require('places.js')
 const promisedLocation = require('promised-location')
 const got = require('got')
 const tesseract = require('tesseract.js')
-const querystring = require('querystring')
 
 const $ = s => document.querySelector(s)
 const $$ = s => Array.from(document.querySelectorAll(s))
@@ -128,22 +127,9 @@ $('#imageUpload').addEventListener('change', function () {
     return
   }
   Promise.resolve(tesseract.recognize(file)).then(function (result) {
-    const body = result.text
-    const query = querystring.stringify({
-      // TODO use website keys rather https://smartystreets.com/docs/cloud/authentication#htmlkeys
-      // TODO note that website keys require HTTP GET, but the extract api doesn't support that, so maybe proxy it through the server instead?
-      // TODO https://smartystreets.com/docs/cloud/us-extract-api#http-request-methods
-      'auth-id': process.env.SMARTYSTREETS_AUTH_ID,
-      'auth-token': process.env.SMARTYSTREETS_AUTH_TOKEN,
-      aggressive: true
-    })
-    const headers = {
-      'Content-Type': 'text/plain'
-    }
-    return got('https://us-extract.api.smartystreets.com/', {
-      query,
-      headers,
-      body,
+    const {text} = result
+    return got('/extractAddresses', {
+      body: {text},
       json: true
     })
   }).then(function (response) {

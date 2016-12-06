@@ -13,6 +13,7 @@ const compression = require('compression')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const extractAddresses = require('./routes/extractAddresses')
 
 const app = express()
 
@@ -41,6 +42,7 @@ app.use('/scripts/index.js', browserify(path.join(__dirname, 'scripts', 'index.j
 app.use('/', httpsRedirect())
 app.use('/', index)
 app.use('/users', users)
+app.use('/extractAddresses', extractAddresses)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
