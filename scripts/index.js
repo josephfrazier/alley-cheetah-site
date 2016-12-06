@@ -58,7 +58,11 @@ function restoreFieldValues () {
     if (autocompleter) {
       autocompleter.setVal(field.value)
     } else {
-      $(field.selector).checked = field.checked
+      try {
+        $(field.selector).checked = field.checked
+      } catch (err) {
+        console.error(err.message)
+      }
     }
   })
 }
