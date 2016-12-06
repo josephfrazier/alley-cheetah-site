@@ -19,6 +19,7 @@ then open <http://localhost:3000>
 
 # TODOs / Braindump
 
+* Improve OCR instructions/feedback. Maybe move it to the server for speed?
 * Show car routes as well (in case they're faster/shorter than bike routes)
   * Highways/etc should be disabled
   * This will cost extra API calls
@@ -29,4 +30,3 @@ then open <http://localhost:3000>
 * Scrape grocery store addresses and prioritize them in autocomplete?
   * http://supermarketpage.com/supermarketlist.php
   * https://community.algolia.com/places/documentation.html#autocompletejs
-* Use OCR to allow easier input?

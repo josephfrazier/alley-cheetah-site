@@ -16,6 +16,7 @@
     "compression": "^1.6.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "envify": "^4.0.0",
     "express": "~4.14.0",
     "express-https-redirect": "^1.0.0",
     "got": "^6.6.3",
@@ -28,6 +29,7 @@
     "promised-location": "^1.0.1",
     "serve-favicon": "~2.3.0",
     "setimmediate": "^1.0.5",
+    "tesseract.js": "^1.0.10",
     "transpose": "0.0.2"
   },
   "devDependencies": {

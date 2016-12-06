@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const browserify = require('browserify-middleware')
 const babel = require('babel-core')
 const babelPresetEs2015 = require('babel-preset-es2015')
+const envify = require('envify')
 const httpsRedirect = require('express-https-redirect')
 const compression = require('compression')
 
@@ -28,6 +29,7 @@ app.use(cookieParser())
 app.use('/stylesheets', express.static(path.join(__dirname, 'public', 'stylesheets')))
 app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
 app.use('/scripts/index.js', browserify(path.join(__dirname, 'scripts', 'index.js'), {
+  transform: [envify],
   postcompile: function (source) {
     return babel.transform(source, {
       presets: [babelPresetEs2015],

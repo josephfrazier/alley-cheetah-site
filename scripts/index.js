@@ -2,6 +2,8 @@ require('setimmediate') // needed for `got`
 const places = require('places.js')
 const promisedLocation = require('promised-location')
 const got = require('got')
+const tesseract = require('tesseract.js')
+const querystring = require('querystring')
 
 const $ = s => document.querySelector(s)
 const $$ = s => Array.from(document.querySelectorAll(s))
@@ -117,6 +119,48 @@ $('#clearForm').addEventListener('click', function clearForm () {
 $('#autofillDemo').addEventListener('click', function autofillDemo () {
   Object.keys(addressFields).forEach(function (selector) {
     autocompleters[selector].setVal(addressFields[selector])
+  })
+})
+
+$('#imageUpload').addEventListener('change', function () {
+  const file = this.files[0]
+  if (!file) {
+    return
+  }
+  Promise.resolve(tesseract.recognize(file)).then(function (result) {
+    const body = result.text
+    const query = querystring.stringify({
+      // TODO use website keys rather https://smartystreets.com/docs/cloud/authentication#htmlkeys
+      // TODO note that website keys require HTTP GET, but the extract api doesn't support that, so maybe proxy it through the server instead?
+      // TODO https://smartystreets.com/docs/cloud/us-extract-api#http-request-methods
+      'auth-id': process.env.SMARTYSTREETS_AUTH_ID,
+      'auth-token': process.env.SMARTYSTREETS_AUTH_TOKEN,
+      aggressive: true
+    })
+    const headers = {
+      'Content-Type': 'text/plain'
+    }
+    return got('https://us-extract.api.smartystreets.com/', {
+      query,
+      headers,
+      body,
+      json: true
+    })
+  }).then(function (response) {
+    // response.body is described here: https://smartystreets.com/docs/cloud/us-extract-api#http-response
+    // TODO: figure out which addresses go where, in case there are gaps
+    const addressTexts = response.body.addresses.map(a => a.text)
+    const gridSize = Math.round(Math.sqrt(addressTexts.length))
+    const rowNames = ['A', 'B', 'C', 'D', 'E']
+    const colNames = ['1', '2', '3', '4', '5']
+    rowNames.slice(0, gridSize).forEach(function (row, rowIndex) {
+      colNames.slice(0, gridSize).forEach(function (col, colIndex) {
+        const selector = '#' + row + col
+        autocompleters[selector].setVal(addressTexts[rowIndex * gridSize + colIndex])
+      })
+    })
+  }).catch(function (error) {
+    window.alert(error.message)
   })
 })
 
