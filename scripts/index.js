@@ -126,13 +126,17 @@ $('#imageUpload').addEventListener('change', function () {
   if (!file) {
     return
   }
-  Promise.resolve(tesseract.recognize(file)).then(function (result) {
+  Promise.resolve(tesseract.recognize(file).progress(onTesseractProgress)).then(function (result) {
     const {text} = result
     return got('/extractAddresses', {
       body: {text},
       json: true
     })
   }).then(function (response) {
+    onTesseractProgress({
+      status: '',
+      progress: 0
+    })
     // response.body is described here: https://smartystreets.com/docs/cloud/us-extract-api#http-response
     // TODO: figure out which addresses go where, in case there are gaps
     const addressTexts = response.body.addresses.map(a => a.text)
@@ -149,6 +153,11 @@ $('#imageUpload').addEventListener('change', function () {
     window.alert(error.message)
   })
 })
+
+function onTesseractProgress ({status, progress}) {
+  $('#ocrStatus').innerText = status
+  $('#ocrProgress').setAttribute('value', progress)
+}
 
 $('form').addEventListener('submit', function (event) {
   event.preventDefault()

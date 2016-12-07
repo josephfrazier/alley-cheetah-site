@@ -19,7 +19,7 @@ then open <http://localhost:3000>
 
 # TODOs / Braindump
 
-* Improve OCR instructions/feedback. Maybe move it to the server for speed?
+* Improve OCR instructions. Maybe move it to the server for speed?
 * Show car routes as well (in case they're faster/shorter than bike routes)
   * Highways/etc should be disabled
   * This will cost extra API calls
