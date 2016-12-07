@@ -19,7 +19,14 @@ then open <http://localhost:3000>
 
 # TODOs / Braindump
 
-* Improve OCR instructions. Maybe move it to the server for speed?
+* Improve OCR instructions (for both users and deployment)
+* Maybe move OCR to the server for speed?
+  Clients currently have to download a couple of large files, so uploading an image might be faster.
+  The server would have these files cached, as well.
+  * https://github.com/naptha/tesseract.js/blob/157d9b0e0a927602d511e9dcd9c16ce7b14f5c11/README.md#local-installation
+  * https://github.com/naptha/tesseract.js-core/blob/master/index.js
+  * https://github.com/naptha/tessdata/blob/gh-pages/3.02/eng.traineddata.gz
+    * This one also has to be unzipped
 * Show car routes as well (in case they're faster/shorter than bike routes)
   * Highways/etc should be disabled
   * This will cost extra API calls
