@@ -25,7 +25,7 @@
     "got": "^6.6.3",
     "jade": "~1.11.0",
     "memoize-fs": "^1.0.5",
-    "morgan": "~1.7.0",
+    "morgan": "~1.9.1",
     "nodemon": "^1.11.0",
     "places.js": "^1.4.7",
     "pretty-ms": "^2.1.0",
